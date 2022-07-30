@@ -26,4 +26,8 @@ export const styles = () => {
     .pipe(gulp.dest(paths.styles.src));
 };
 
-//export default styles;
+
+
+export const watch = () => {
+  gulp.watch("src/assets/scss/**/*.scss", styles);
+};
