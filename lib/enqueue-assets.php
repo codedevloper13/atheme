@@ -8,6 +8,7 @@
  */
 function atheme_assets() {
 	wp_enqueue_style( 'atheme-style', get_template_directory_uri() . '/dist/assets/css/bundle.css', array(), wp_rand(), 'all' );
+	wp_enqueue_script( 'atheme-script', get_template_directory_uri() . '/dist/assets/js/bundle.js', array(), wp_rand(), true );
 }
 
 add_action( 'wp_enqueue_scripts', 'atheme_assets' );
