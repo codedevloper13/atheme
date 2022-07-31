@@ -6,6 +6,10 @@ import gulpif from "gulp-if";
 import sourcemaps from "gulp-sourcemaps";
 import imagemin from "gulp-imagemin";
 import del from "del";
+const webpack = require("webpack-stream");
+import uglify from "gulp-uglify";
+
+//import { use } from "browser-sync";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -19,6 +23,10 @@ const paths = {
   images: {
     src: "src/assets/images/**/*.{jpg,jpeg,png,gif,svg}",
     dest: "dist/assets/images",
+  },
+  scripts: {
+    src: "src/assets/js/bundle.js",
+    dest: "dist/assets/js",
   },
   other: {
     src: ["src/assets/**/*", "!src/assets/{scss,js,images},!src/assets/{scss,js,images}/**/*"],
@@ -49,6 +57,36 @@ export const watch = () => {
   gulp.watch(paths.other.src, other);
 };
 
+// Webpack
+
+export const scripts = () => {
+  return gulp
+    .src(paths.scripts.src)
+    .pipe(
+      webpack({
+        module: {
+          rules: [
+            {
+              test: /\.js$/,
+              use: {
+                loader: "babel-loader",
+                options: {
+                  presets: ["@babel/preset-env"],
+                },
+              },
+            },
+          ],
+        },
+        output: {
+          filename: "bundle.js",
+        },
+        devtool: !PRODUCTION ? "inline-source-map" : false,
+      })
+    )
+    .pipe(gulpif(PRODUCTION, uglify()))
+    .pipe(gulp.dest(paths.scripts.dest));
+};
+
 // Copy all other files to dist directly
 
 export const copy = () => {
@@ -60,7 +98,7 @@ export const clean = () => {
   return del(["dist"]);
 };
 
-export const dev = gulp.series(clean, gulp.parallel(styles, images, watch));
+export const dev = gulp.series(clean, gulp.parallel(styles, images, copy), watch);
 export const build = gulp.series(clean, gulp.parallel(styles, images, copy));
 
 // Default task
