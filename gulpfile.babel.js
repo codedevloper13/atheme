@@ -5,6 +5,7 @@ import cleanCSS from "gulp-clean-css";
 import gulpif from "gulp-if";
 import sourcemaps from "gulp-sourcemaps";
 import imagemin from "gulp-imagemin";
+import del from "del";
 
 const PRODUCTION = yargs.argv.prod;
 
@@ -41,8 +42,11 @@ export const images = () => {
   return gulp.src(paths.images.src).pipe(gulpif(PRODUCTION, imagemin())).pipe(gulp.dest(paths.images.dest));
 };
 
+// Other files
 export const watch = () => {
   gulp.watch("src/assets/scss/**/*.scss", styles);
+  gulp.watch(paths.images.src, images);
+  gulp.watch(paths.other.src, other);
 };
 
 // Copy all other files to dist directly
@@ -50,3 +54,14 @@ export const watch = () => {
 export const copy = () => {
   return gulp.src(paths.other.src).pipe(gulp.dest(paths.other.dest));
 };
+
+// Clean dist folder
+export const clean = () => {
+  return del(["dist"]);
+};
+
+export const dev = gulp.series(clean, gulp.parallel(styles, images, watch));
+export const build = gulp.series(clean, gulp.parallel(styles, images, copy));
+
+// Default task
+export default dev;
