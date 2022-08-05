@@ -27,13 +27,13 @@ if ( have_posts() ) {
 	</h2>
 	<div>
 		Posted On
-		<a href="<?php get_permalink(); ?>">
+		<a href="<?php esc_url( get_permalink() ); ?>">
 		<time datetime="<?php echo get_the_date( 'c' ); ?>">
 		<?php echo get_the_date( 'l , F ,j ,Y' ); ?>
 		</time>
 		</a>
 		By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
-		<?php echo get_the_author(); ?></a>
+		 <?php echo get_the_author(); ?></a>
 	</div>
 	<div>
 		<?php the_excerpt(); ?>
