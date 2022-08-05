@@ -94,7 +94,11 @@ export const scripts = () => {
         output: {
           filename: "[name].js",
         },
+        externals: {
+          jquery: "jQuery",
+        },
         devtool: !PRODUCTION ? "inline-source-map" : false,
+        mode: PRODUCTION ? "production" : "development",
       })
     )
     .pipe(gulpif(PRODUCTION, uglify()))
@@ -106,3 +110,4 @@ export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, c
 
 // Default task
 export default dev;
+
