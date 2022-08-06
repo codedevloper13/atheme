@@ -1,5 +1,1 @@
-import $ from  "jquery";
-import "./components/slider";
-
-
-
+(()=>{"use strict";jQuery})();

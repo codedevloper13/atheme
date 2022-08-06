@@ -11,7 +11,7 @@ import uglify from "gulp-uglify";
 import named from "vinyl-named";
 const browserSync = require("browser-sync");
 const server = browserSync.create();
-
+import zip from "gulp-zip";
 //import { use } from "browser-sync";
 
 const PRODUCTION = yargs.argv.prod;
@@ -34,6 +34,10 @@ const paths = {
   other: {
     src: ["src/assets/**/*", "!src/assets/{scss,js,images},!src/assets/{scss,js,images}/**/*"],
     dest: "dist/assets",
+  },
+  package: {
+    src: ["**/*", "!node_modules{,/**}", "!src{,/**}", "!packaged{,/**}", "!gulpfile.babel.js", "!.vscode", "!.babelrc", "!.gitignore", "!package.json", "!package-lock.json", "!yarn.lock"],
+    dest: "packaged",
   },
 };
 
@@ -63,7 +67,7 @@ export const styles = () => {
     .src(paths.styles.src)
     .pipe(gulpif(!PRODUCTION, sourcemaps.init()))
     .pipe(sass().on("error", sass.logError))
-    .pipe(gulpif(PRODUCTION, cleanCSS({ compatibility: "ie9" })))
+    .pipe(gulpif(PRODUCTION, cleanCSS({ compatibility: ",ie8,ie9" })))
     .pipe(gulpif(!PRODUCTION, sourcemaps.write()))
     .pipe(gulp.dest(paths.styles.dest))
     .pipe(server.stream());
@@ -125,8 +129,13 @@ export const scripts = () => {
     .pipe(gulp.dest(paths.scripts.dest));
 };
 
+export const compress = () => {
+  return gulp.src(paths.package.src).pipe(zip("atheme.zip")).pipe(gulp.dest(paths.package.dest));
+};
+
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);
 export const build = gulp.series(clean, gulp.parallel(styles, scripts, images, copy));
+export const bundle = gulp.series(build, compress);
 
 // Default task
 export default dev;
