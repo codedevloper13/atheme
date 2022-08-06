@@ -33,14 +33,13 @@ if ( have_posts() ) {
 		</time>
 		</a>
 		By <a href="<?php echo esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ); ?>">
-		 <?php echo get_the_author(); ?></a>
+		<?php echo get_the_author(); ?></a>
 	</div>
 	<div>
 		<?php the_excerpt(); ?>
 		<a href="<?php echo esc_url( get_the_permalink() ); ?>" title="<?php the_title_attribute(); ?>">
 		Read More
-		<span class="u-screen-reader-text">About<?php the_title(); ?></span>
-	</a>
+		<span class="u-screen-reader-text">About<?php the_title(); ?></span></a>
 	</div>
 		<?php
 	}
