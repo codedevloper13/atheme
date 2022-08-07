@@ -1,1 +1,8 @@
-console.log("hello Admin");
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!********************************!*\
+  !*** ./src/assets/js/admin.js ***!
+  \********************************/
+
+/******/ })()
+;
