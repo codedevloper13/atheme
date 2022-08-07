@@ -12,6 +12,8 @@ import named from "vinyl-named";
 const browserSync = require("browser-sync");
 const server = browserSync.create();
 import zip from "gulp-zip";
+import replace from "gulp-replace";
+import info from "./package.json";
 //import { use } from "browser-sync";
 
 const PRODUCTION = yargs.argv.prod;
@@ -130,7 +132,11 @@ export const scripts = () => {
 };
 
 export const compress = () => {
-  return gulp.src(paths.package.src).pipe(zip("atheme.zip")).pipe(gulp.dest(paths.package.dest));
+  return gulp
+    .src(paths.package.src)
+    .pipe(replace("_themename", info.name))
+    .pipe(zip(`${info.name}.zip`))
+    .pipe(gulp.dest(paths.package.dest));
 };
 
 export const dev = gulp.series(clean, gulp.parallel(styles, scripts, images, copy), serve, watch);

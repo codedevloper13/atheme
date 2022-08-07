@@ -46,7 +46,7 @@ if ( have_posts() ) {
 	the_posts_pagination();
 
 } else {
-	echo '<p>No content found.</p>';
+	echo esc_html( apply_filters( '_themename_no_post_text', esc_html__( 'Sorry, no posts matched yours criteria', '_themename' ) ) );
 }
 
 
