@@ -36,5 +36,30 @@ function _themename_sidebar_widgets() {
 	);
 
 }
+// create a footer colums widget area for the theme.
+$footer_layout  = '3,3,3,3';
+$footer_columns = explode( ',', $footer_layout );
+$footer_bg      = 'dark';
+$widgets_theme  = '';
+if ( 'light' === $footer_bg ) {
+	$widgets_theme = 'c-footer-widgets--dark';
+} else {
+	$widgets_theme = 'c-footer-widgets--light';
+}
+foreach ( $footer_columns as $key => $column ) {
+	register_sidebar(
+		array(
+			'name'          => sprintf( esc_html__( 'Footer Widgets Column', '_themename' ) . ' ' . ( $key + 1 ) ),
+			'id'            => 'footer-sidebar-' . ( $key + 1 ),
+			'description'   => __( 'This sidebar appear on footer.', '_themename' ),
+			'before_widget' => '<section id="%1$s" class="c-footer-widget ' . $widgets_theme . ' %2$s">',
+			'after_widget'  => '</section>',
+			'before_title'  => '<h5>',
+			'after_title'   => '</h5>',
+		)
+	);
+}
+
+
 
 add_action( 'widgets_init', '_themename_sidebar_widgets' );
