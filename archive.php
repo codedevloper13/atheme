@@ -1,27 +1,32 @@
 <?php
 /**
- * The main template file
+ * The template for displaying archive pages
  *
- * This is the most generic template file in a WordPress theme
- * and one of the two required files for a theme (the other being style.css).
- * It is used to display a page when nothing more specific matches a query.
- * E.g., it puts together the home page when no home.php file exists.
+ * Learn more: http://codex.wordpress.org/Template_Hierarchy
  *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package WordPress
- * @subpackage Twenty_Twenty_One
- * @since Twenty Twenty-One 1.0
+ * @package Atheme
  */
 
-get_header(); ?>
+// Exit if accessed directly.
 
+defined( 'ABSPATH' ) || exit;
+get_header();
+?>
 <div class="o-container u-margin-bottom-40">
 	<div class="o-row">
 		<div class="o-row__column o-row__column--span-12  o-row__column--span-<?php echo is_active_sidebar( 'primary-sidebar' ) ? '8' : '12'; ?>@medium">
 			<main role="main">
 				<?php
 				if ( have_posts() ) {
+					?>
+					<header class="page-header">
+						<?php
+						the_archive_title( '<h1 class="page-title">', '</h1>' );
+						the_archive_description( '<div class="taxonomy-description">', '</div>' );
+						?>
+					</header><!-- .page-header -->
+					<?php
+
 					while ( have_posts() ) {
 						the_post();
 
@@ -36,7 +41,7 @@ get_header(); ?>
 
 				} else {
 					get_template_part( 'loop-templates/content', 'none' );
-					
+
 				}
 				?>
 			</main>

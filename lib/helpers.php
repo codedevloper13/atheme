@@ -22,3 +22,13 @@ function _themename_readmore_link() {
 
 	echo '</a>';
 }
+
+
+/**
+ * Function for get the post id
+ *
+ * @return integer
+ */
+function _themename_post_id() {
+	return get_the_ID();
+}
