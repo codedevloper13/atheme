@@ -36,7 +36,6 @@ get_header(); ?>
 
 				} else {
 					get_template_part( 'loop-templates/content', 'none' );
-					
 				}
 				?>
 			</main>
