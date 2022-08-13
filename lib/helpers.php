@@ -1,4 +1,12 @@
 <?php
+/**
+ * Theme basic Helper Functions
+ *
+ * @package Atheme
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
 
 
 

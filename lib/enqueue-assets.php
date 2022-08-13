@@ -1,5 +1,15 @@
 <?php
 /**
+ * Theme Enqueue Scripts
+ *
+ * @package Atheme
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+
+/**
  * Enqueue assets for the front-end.
  *
  * @since 1.0.0
