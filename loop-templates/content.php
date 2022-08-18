@@ -23,4 +23,4 @@ defined( 'ABSPATH' ) || exit;
 			<?php _themename_readmore_link(); ?>
 		</div>
 </article>
-<?php
+

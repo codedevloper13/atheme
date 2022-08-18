@@ -14,3 +14,5 @@ require_once 'lib/helpers.php';
 require_once 'lib/enqueue-assets.php';
 require_once 'lib/sidebars.php';
 require_once 'lib/theme-setup.php';
+require_once 'lib/class-wp-bootstrap-navwalker.php';
+require_once 'lib/navigation.php';

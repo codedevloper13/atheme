@@ -40,3 +40,24 @@ function _themename_readmore_link() {
 function _themename_post_id() {
 	return get_the_ID();
 }
+
+
+if ( ! function_exists( '_themename_link_pages' ) ) {
+	/**
+	 * Displays/retrieves page links for paginated posts (i.e. including the
+	 * `<!--nextpage-->` Quicktag one or more times). This tag must be
+	 * within The Loop. Default: echo.
+	 *
+	 * @return void|string Formatted output in HTML.
+	 */
+	function _themename_link_pages() {
+		$args = apply_filters(
+			'_themename_link_pages_args',
+			array(
+				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'understrap' ),
+				'after'  => '</div>',
+			)
+		);
+		wp_link_pages( $args );
+	}
+}
