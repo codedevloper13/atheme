@@ -19,7 +19,7 @@ defined( 'ABSPATH' ) || exit; ?>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
+<a href="#content" class="u-skip-link"><?php esc_html_e( 'Skip to content', '_themename' ); ?></a>
 <header role="banner" class="u-margin-bottom-40">
 	<div class="c-header">
 		<div class="o-container u-flex u-align-justify u-align-middle">
@@ -43,3 +43,5 @@ defined( 'ABSPATH' ) || exit; ?>
 		</div>
 	</div>
 </header>
+
+<div id="content">
