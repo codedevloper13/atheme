@@ -46,9 +46,9 @@ const paths = {
 export const serve = (done) => {
   server.init({
     proxy: "https://themedevelopment.test/",
-    port: 5000,
+    port: 8000,
     ui: {
-      port: 5001,
+      port: 8001,
     },
   });
   done();

@@ -1,6 +1,6 @@
 <?php
-
 /**
+ *
  * Theme Navigation setup
  *
  * @package Atheme
