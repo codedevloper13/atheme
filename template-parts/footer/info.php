@@ -14,7 +14,16 @@ if ( ! empty( $footer_site_info ) ) { ?>
 <div class='o-container' >
 	<div class= 'o-row' >
 			<div class = 'o-row__column o-row_column--span-12  c-site-info__text' >
-				<?php echo wp_kses_post( $footer_site_info ); ?>
+				<?php
+				$allowed_html = array(
+					'a' => array(
+						'href'   => array(),
+						'title'  => array(),
+						'target' => array(),
+					),
+				);
+				echo wp_kses( $footer_site_info, $allowed_html );
+				?>
 			</div> 
 		</div>
 	</div>

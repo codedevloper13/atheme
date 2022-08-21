@@ -29,7 +29,7 @@ function _themename_customize_register( $wp_customize ) {
 		'_themename_site_info',
 		array(
 			'default'          => '',
-			'saniate_callback' => 'sanitize_text_field',
+			'saniate_callback' => '_themename_sanitize_html_field',
 		)
 	);
 

@@ -61,3 +61,20 @@ if ( ! function_exists( '_themename_link_pages' ) ) {
 		wp_link_pages( $args );
 	}
 }
+
+/**
+ * Function sanitize html flied.
+ *
+ * @param  string $value input value.
+ * @return string
+ */
+function _themename_sanitize_html_field( $value ) {
+	$allowed_html = array(
+		'a' => array(
+			'href'   => array(),
+			'title'  => array(),
+			'target' => array(),
+		),
+	);
+	return wp_kses( $value, $allowed_html );
+}
