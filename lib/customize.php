@@ -16,6 +16,8 @@ defined( 'ABSPATH' ) || exit;
  */
 function _themename_customize_register( $wp_customize ) {
 
+	$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
+
 	$wp_customize->add_section(
 		'_themename_footer_section',
 		array(
@@ -30,6 +32,7 @@ function _themename_customize_register( $wp_customize ) {
 		array(
 			'default'          => '',
 			'saniate_callback' => '_themename_sanitize_html_field',
+			'transport'        => 'postMessage',
 		)
 	);
 

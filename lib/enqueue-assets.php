@@ -33,3 +33,20 @@ function _themename_admin_assets() {
 }
 
 add_action( 'admin_enqueue_scripts', '_themename_admin_assets' );
+
+
+
+/**
+ * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ */
+function _themename_customize_preview_js() {
+	wp_enqueue_script(
+		'themename_customize_preview',
+		get_template_directory_uri() . '/dist/assets/js/customize-preview.js',
+		array( 'customize-preview', 'jquery' ),
+		wp_rand(),
+		true
+	);
+}
+
+add_action( 'customize_preview_init', '_themename_customize_preview_js' );
