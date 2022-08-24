@@ -1,14 +1,13 @@
 <?php
-
 /**
- * Atheme functions and definitions
+ * UnderStrap functions and definitions
  *
- * @link https://developer.wordpress.org/themes/basics/theme-functions/
- *
- * @package WordPress
- * @subpackage Atheme
- * @since Atheme 1.0
+ * @package Atheme
  */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
 
 require_once 'lib/helpers.php';
 require_once 'lib/enqueue-assets.php';
