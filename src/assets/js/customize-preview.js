@@ -17,6 +17,6 @@ wp.customize('_themename_site_info' ,(value)=>{
 
 wp.customize('blogname' ,(value)=>{
     value.bind((to)=>{
-        $('.c-header__logo').html(to);
+        $('.c-header__blogname').html(to);
     })
 })
