@@ -31,15 +31,16 @@ function _themename_customize_register( $wp_customize ) {
 			},
 		)
 	);
-
+	/*##################  SINGLE SETTINGS ########################*/
 		$wp_customize->selective_refresh->add_partial(
 			'',
 			array(
-				'settings'            => array( '_themename_site_info' ),
-				'selector'            => '.c-site-info',
-				'container_inclusive' => true,
+				'settings'            => array( '_themename_footer_bg' ),
+				'selector'            => '#footer',
+				'container_inclusive' => false,
 				'render_callback'     => function () {
 					get_template_part( 'template-parts/footer/info' );
+					get_template_part( 'template-parts/footer/widgets' );
 				},
 			)
 		);
@@ -49,7 +50,7 @@ function _themename_customize_register( $wp_customize ) {
 		array(
 			'title'       => __( 'Footer Options', '_themename' ),
 			'description' => __( 'You can change Footer Options from here ', '_themename' ),
-			'priority'    => 35,
+			'priority'    => 25,
 		)
 	);
 
@@ -66,10 +67,53 @@ function _themename_customize_register( $wp_customize ) {
 		'_themename_site_info',
 		array(
 			'label'    => __( 'Site Info', '_themename' ),
-			'section'  => 'title_tagline',
+			'section'  => '_themename_footer_section',
 			'type'     => 'text',
 			'priority' => 11,
 		)
 	);
+
+	/**
+	 * FOOTER BACKGROUND CUSTOMIZER.
+	*/
+
+	$wp_customize->add_setting(
+		'_themename_footer_bg',
+		array(
+			'default'           => 'dark',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => '_themename_sanitize_footer_bg',
+		)
+	);
+	$wp_customize->add_control(
+		'_themename_footer_bg',
+		array(
+			'type'    => 'select',
+			'label'   => esc_html__( 'Footer Backgroud', '_themename' ),
+			'choices' => array(
+				'light' => esc_html__( 'Light', '_themename' ),
+				'dark'  => esc_html__( 'Dark', '_themename' ),
+			),
+			'section' => '_themename_footer_section',
+		)
+	);
+
 }
+/**
+ * Footer backgroud clolr change.
+
+ * @param string $input -Dropdown value.
+ * if dropdown value will be not selected then it will be return defaul=('dark').
+ * @return string
+ */
+function _themename_sanitize_footer_bg( $input ) {
+	$valid = array( 'light', 'dark' );
+	if ( in_array( $input, $valid, true ) ) {
+		return $input;
+	}
+	return 'dark';
+}
+
+
+
 add_action( 'customize_register', '_themename_customize_register' );
