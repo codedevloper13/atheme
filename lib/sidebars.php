@@ -39,7 +39,7 @@ function _themename_sidebar_widgets() {
 // create a footer colums widget area for the theme.
 $footer_layout  = '3,3,3,3';
 $footer_columns = explode( ',', $footer_layout );
-$footer_bg      = 'dark';
+$footer_bg      = get_theme_mod( '_themename_footer_bg', 'dark' );
 $widgets_theme  = '';
 if ( 'light' === $footer_bg ) {
 	$widgets_theme = 'c-footer-widgets--dark';
