@@ -35,7 +35,7 @@ function _themename_customize_register( $wp_customize ) {
 		$wp_customize->selective_refresh->add_partial(
 			'',
 			array(
-				'settings'            => array( '_themename_footer_bg' ),
+				'settings'            => array( '_themename_footer_bg', '_themename_footer_layout' ),
 				'selector'            => '#footer',
 				'container_inclusive' => false,
 				'render_callback'     => function () {
@@ -98,9 +98,35 @@ function _themename_customize_register( $wp_customize ) {
 		)
 	);
 
+	/**
+	 * FOOTER COLUMNS CUSTOMIZER.
+	*/
+
+	$wp_customize->add_setting(
+		'_themename_footer_layout',
+		array(
+			'default'           => '3,3,3,3',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'sanitize_text_field',
+			'validate_callback' => '_themename_validate_footer_layout',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		'_themename_footer_layout',
+		array(
+			'type'        => 'text',
+			'label'       => esc_html__( 'Footer Layout', '_themename' ),
+			'section'     => '_themename_footer_section',
+			'description' => esc_html__( 'Per Columns is 3 ', '_themename' ),
+
+		)
+	);
+
 }
 /**
- * Footer backgroud clolr change.
+ * Footer backgroud color change.
 
  * @param string $input -Dropdown value.
  * if dropdown value will be not selected then it will be return defaul=('dark').
@@ -113,7 +139,19 @@ function _themename_sanitize_footer_bg( $input ) {
 	}
 	return 'dark';
 }
+/**
+ * Footer Column Layouts Colums valiadtion chek wheter value is int or not.
 
-
+ * @param string $validity -For validation .
+ * @param int    $value -Value willbe integer .
+ * if value is not number then throw a error.
+ * @return string
+ */
+function _themename_validate_footer_layout( $validity, $value ) {
+	if ( ! preg_match( '/^([1-9]|1[012])(,([1-9]|1[012]))*$/', $value ) ) {
+		$validity->add( 'invalid_footer_layout', esc_html__( 'Footer layouts is invalid', '_themename' ) );
+	}
+	return $validity;
+}
 
 add_action( 'customize_register', '_themename_customize_register' );
