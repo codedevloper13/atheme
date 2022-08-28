@@ -88,7 +88,15 @@ function _themename_theme_setup() {
 		);
 
 		// Set up the WordPress Theme logo feature.
-		add_theme_support( 'custom-logo' );
+		add_theme_support(
+			'custom-logo',
+			array(
+				'height'     => 200,
+				'width'      => 600,
+				'flex-height' => true,
+				'flex-width' => true,
+			)
+		);
 
 		// Add support for responsive embedded content.
 		add_theme_support( 'responsive-embeds' );
