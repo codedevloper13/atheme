@@ -8,6 +8,9 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 
+
+
+require_once 'lib/inline-css.php';
 require_once 'lib/customize.php';
 require_once 'lib/helpers.php';
 require_once 'lib/enqueue-assets.php';

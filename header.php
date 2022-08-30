@@ -31,7 +31,6 @@ defined( 'ABSPATH' ) || exit; ?>
 					?>
 						<a class="c-header__blogname" href="<?php echo esc_url( home_url( '/' ) ); ?>"><?php echo bloginfo( 'name' ); ?></a>
 				<?php } ?>
-				
 			</div>
 			<?php echo get_search_form( true ); ?>
 		</div>

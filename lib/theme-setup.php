@@ -76,25 +76,25 @@ function _themename_theme_setup() {
 		);
 
 		// Set up the WordPress core custom background feature.
-		add_theme_support(
-			'custom-background',
-			apply_filters(
-				'_themename_custom_background_args',
-				array(
-					'default-color' => 'ffffff',
-					'default-image' => '',
-				)
-			)
-		);
+		// add_theme_support(
+		// 'custom-background',
+		// apply_filters(
+		// '_themename_custom_background_args',
+		// array(
+		// 'default-color' => 'ffffff',
+		// 'default-image' => '',
+		// )
+		// )
+		// );
 
 		// Set up the WordPress Theme logo feature.
 		add_theme_support(
 			'custom-logo',
 			array(
-				'height'     => 200,
-				'width'      => 600,
+				'height'      => 200,
+				'width'       => 600,
 				'flex-height' => true,
-				'flex-width' => true,
+				'flex-width'  => true,
 			)
 		);
 
