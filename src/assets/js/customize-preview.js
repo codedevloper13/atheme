@@ -20,3 +20,35 @@ wp.customize('blogname' ,(value)=>{
         $('.c-header__blogname').html(to);
     })
 })
+
+// Theme Accent Color Customizer 
+
+wp.customize('_themename_accent_color' ,(value)=>{
+    value.bind((to)=>{
+        $('#_themename-stylesheet-inline-css').html(`
+        a{
+        color: ${to}
+            }
+            
+            :focus{
+                outline-color: ${to}
+            }
+            .c-post.sticky{
+            border-left-color: ${to}
+            }
+            button, input[type='submit'] { 
+                background-color:${to}
+            }
+            .header-nav .menu > .menu-item:not(.mega) .sub-menu .menu-item:hover > a {
+                background: ${to}
+            }
+            .header-nav .menu > .menu-item.mega > .sub-menu > .menu-item > .sub-menu a:hover {
+            color: ${to}
+            }
+
+            .header-nav .menu > .menu-item.mega > .sub-menu > .menu-item > a:hover {
+            color: ${to}
+            }
+        `);
+    })
+})

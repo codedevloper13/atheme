@@ -58,8 +58,9 @@ function _themename_customize_register( $wp_customize ) {
 		'_themename_site_info',
 		array(
 			'default'          => '',
-			'saniate_callback' => '_themename_sanitize_html_field',
 			'transport'        => 'postMessage',
+			'saniate_callback' => '_themename_sanitize_html_field',
+
 		)
 	);
 
@@ -72,6 +73,40 @@ function _themename_customize_register( $wp_customize ) {
 			'priority' => 11,
 		)
 	);
+
+	/*##################  GENERAL SETTINGS ########################*/
+
+	$wp_customize->add_section(
+		'_themename_general_options',
+		array(
+			'title'       => __( 'General Options', '_themename' ),
+			'description' => __( 'You can change General Options from here ', '_themename' ),
+			// 'priority'    => 25,
+		)
+	);
+
+	$wp_customize->add_setting(
+		'_themename_accent_color',
+		array(
+			'default'           => '#6ab04c',
+			'transport'         => 'postMessage',
+			'sanitize_callback' => 'sanitize_hex_color',
+
+		)
+	);
+
+	$wp_customize->add_control(
+		new WP_Customize_Color_Control(
+			$wp_customize,
+			'_themename_accent_color',
+			array(
+				'label'   => __( 'Accent Color', '_themename' ),
+				'section' => '_themename_general_options',
+			)
+		)
+	);
+
+	/*##################  FOOTER SETTINGS ########################*/
 
 	/**
 	 * FOOTER BACKGROUND CUSTOMIZER.

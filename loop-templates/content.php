@@ -8,7 +8,7 @@
 // Exit if accessed directly.
 defined( 'ABSPATH' ) || exit;
 ?>
-<article <?php post_class( 'c-post u-margin-bottom-2' ); ?>>
+<article <?php post_class( 'c-post u-margin-bottom-20 sticky' ); ?>>
 		<h2>
 			<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>"><?php the_title(); ?></a>
 		</h2>
