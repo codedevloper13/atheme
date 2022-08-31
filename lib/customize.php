@@ -58,8 +58,9 @@ function _themename_customize_register( $wp_customize ) {
 		'_themename_site_info',
 		array(
 			'default'          => '',
-			'saniate_callback' => '_themename_sanitize_html_field',
 			'transport'        => 'postMessage',
+			'saniate_callback' => '_themename_sanitize_html_field',
+
 		)
 	);
 
@@ -88,7 +89,9 @@ function _themename_customize_register( $wp_customize ) {
 		'_themename_accent_color',
 		array(
 			'default'           => '#6ab04c',
+			'transport'         => 'postMessage',
 			'sanitize_callback' => 'sanitize_hex_color',
+
 		)
 	);
 
