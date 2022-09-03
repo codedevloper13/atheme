@@ -21,6 +21,6 @@ defined( 'ABSPATH' ) || exit;
 		<div>
 			<?php the_excerpt(); ?>
 			<?php _themename_readmore_link(); ?>
+			<?php echo wp_kses_post( _themename_delete_post() ); ?>
 		</div>
 </article>
-
