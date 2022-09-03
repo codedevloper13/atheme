@@ -23,6 +23,9 @@ require_once 'lib/navigation.php';
  */
 function _themename_handle_delete_post() {
 	if ( isset( $_GET['action'] ) && '_themename_delete_post' === $_GET['action'] ) {
+		if ( ! isset( $_GET['nonce'] ) || !wp_verify_nonce( sanitize_text_field( wp_unslash( $_GET['nonce'] ) ), '_themename_delete_post' . ! isset( $_GET['post'] ) ) ) {
+			return;
+		}
 		$post_ids = isset( $_GET['post'] ) ? sanitize_text_field( wp_unslash( $_GET['post'] ) ) : null;
 		$postss   = get_post( (int) $post_ids );
 		// Check if empty return null.
