@@ -50,6 +50,13 @@ function _themename_customize_preview_js() {
 		wp_rand(),
 		true
 	);
+	// wp_localize_script(
+	// 'themename_customize_preview',
+	// '_themename',
+	// array(
+	// 'inline-css' => accent_color(),
+	// )
+	// );
 }
 
 add_action( 'customize_preview_init', '_themename_customize_preview_js' );

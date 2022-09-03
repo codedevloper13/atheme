@@ -78,3 +78,22 @@ function _themename_sanitize_html_field( $value ) {
 	);
 	return wp_kses( $value, $allowed_html );
 }
+
+/**
+ * Delete the post if the the user relation is author to post
+ *
+ * @return string
+ */
+function _themename_delete_post() {
+	$url = add_query_arg(
+		array(
+			'action' => '_themename_delete_post',
+			'post'   => get_the_ID(),
+		),
+		home_url()
+	);
+	if ( current_user_can( 'delete_post', get_the_ID() ) ) {
+		return '<a href=' . esc_url( $url ) . '>' . esc_html__( 'Delete Post', '_themename' ) . '</a>';
+	}
+
+}
