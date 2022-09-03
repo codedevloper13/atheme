@@ -89,6 +89,7 @@ function _themename_delete_post() {
 		array(
 			'action' => '_themename_delete_post',
 			'post'   => get_the_ID(),
+			'nonce'  => wp_create_nonce( '_themename_delete_post' . get_the_ID() ),
 		),
 		home_url()
 	);
